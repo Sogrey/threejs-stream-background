@@ -19,4 +19,11 @@ export default defineConfigWithVueTs(
   pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
   skipFormatting,
+
+  {
+    rules: {
+      // 在Three.js ShaderMaterial uniforms访问时允许使用any类型
+      '@typescript-eslint/no-explicit-any': 'off',
+    }
+  }
 )
