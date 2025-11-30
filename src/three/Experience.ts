@@ -89,8 +89,8 @@ export default class Experience {
         name: 'base',
         data: {},
         items: [
-          { name: 'particleMaskTexture', source: '/assets/particleMask.png', type: 'texture' },
-          { name: 'smokeTexture', source: '/assets/smoke.png', type: 'texture' }
+          { name: 'particleMaskTexture', source: '/threejs-stream-background/assets/particleMask.png', type: 'texture' },
+          { name: 'smokeTexture', source: '/threejs-stream-background/assets/smoke.png', type: 'texture' }
         ]
       }
     ]
