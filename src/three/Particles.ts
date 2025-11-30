@@ -151,11 +151,17 @@ export default class Particles {
     const material = this.material;
     if (!material?.uniforms) return;
     
-    (material.uniforms as any).uTime.value = this.time.elapsedTime;
+    // 使用类型断言来解决Three.js uniforms的TypeScript问题
+    const uniforms = material.uniforms as {
+      uTime: { value: number }
+      uFocusPoint: { value: number }
+    };
+    
+    uniforms.uTime.value = this.time.elapsedTime;
     
     // 动态景深焦点 - 让焦点随时间缓慢移动，范围更小
     const focusDistance = 8 + Math.sin(this.time.elapsedTime * 0.0001) * 2;
-    (material.uniforms as any).uFocusPoint.value = focusDistance;
+    uniforms.uFocusPoint.value = focusDistance;
   }
 
   /**
@@ -181,17 +187,25 @@ export default class Particles {
     const material = this.material;
     if (!material?.uniforms) return;
 
+    // 使用具体的类型断言替代any
+    const uniforms = material.uniforms as {
+      uSize: { value: number }
+      uProgressSpeed: { value: number }
+      uPerlinFrequency: { value: number }
+      uPerlinMultiplier: { value: number }
+    };
+
     if (params.size !== undefined) {
-      (material.uniforms as any).uSize.value = params.size;
+      uniforms.uSize.value = params.size;
     }
     if (params.progressSpeed !== undefined) {
-      (material.uniforms as any).uProgressSpeed.value = params.progressSpeed;
+      uniforms.uProgressSpeed.value = params.progressSpeed;
     }
     if (params.perlinFrequency !== undefined) {
-      (material.uniforms as any).uPerlinFrequency.value = params.perlinFrequency;
+      uniforms.uPerlinFrequency.value = params.perlinFrequency;
     }
     if (params.perlinMultiplier !== undefined) {
-      (material.uniforms as any).uPerlinMultiplier.value = params.perlinMultiplier;
+      uniforms.uPerlinMultiplier.value = params.perlinMultiplier;
     }
   }
 
