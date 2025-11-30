@@ -95,8 +95,10 @@ export default class Gradient {
     this.colors.start.value = `hsl(${this.time.elapsedTime * 0.01}, ${this.colors.start.saturation}%, ${this.colors.start.lightness}%)`
     this.colors.start.instance.set(this.colors.start.value)
 
-    if (this.material?.uniforms) {
-      this.material.uniforms.uTime.value = this.time.elapsedTime;
+    // TypeScript 严格模式下的安全访问 - 使用非空断言
+    const material = this.material;
+    if (material && material.uniforms) {
+      (material.uniforms as any).uTime.value = this.time.elapsedTime;
     }
   }
 
