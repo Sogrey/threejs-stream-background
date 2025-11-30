@@ -2,15 +2,19 @@
  * 事件发射器类
  * 用于管理组件间的事件通信
  */
+
+// 定义事件回调函数类型，明确参数为any数组，无返回值
+type EventCallback = (...args: any[]) => void;
+
 export default class EventEmitter {
-  private events: { [key: string]: Function[] } = {}
+  private events: { [key: string]: EventCallback[] } = {}
 
   /**
    * 添加事件监听器
    * @param event 事件名称
    * @param callback 回调函数
    */
-  on(event: string, callback: Function): void {
+  on(event: string, callback: EventCallback): void {
     if (!this.events[event]) {
       this.events[event] = []
     }
@@ -22,7 +26,7 @@ export default class EventEmitter {
    * @param event 事件名称
    * @param callback 回调函数
    */
-  off(event: string, callback: Function): void {
+  off(event: string, callback: EventCallback): void {
     if (!this.events[event]) return
     
     const index = this.events[event].indexOf(callback)
