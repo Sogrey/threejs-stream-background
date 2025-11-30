@@ -83,8 +83,8 @@ export default class Gradient {
    * 设置网格
    */
   private setMesh(): void {
-    this.mesh = new THREE.Mesh(this.geometry, this.material)
-    this.scene.add(this.mesh)
+    this.mesh = new THREE.Mesh(this.geometry, this.material!)
+    this.scene.add(this.mesh!)
   }
 
   /**
@@ -96,7 +96,7 @@ export default class Gradient {
     this.colors.start.instance.set(this.colors.start.value)
 
     if (this.material) {
-      this.material.uniforms.uTime.value = this.time.elapsedTime;
+      this.material!.uniforms.uTime.value = this.time.elapsedTime;
     }
   }
 
@@ -119,7 +119,7 @@ export default class Gradient {
    */
   destroy(): void {
     this.geometry.dispose()
-    this.material.dispose()
-    this.scene.remove(this.mesh)
+    if (this.material) this.material.dispose()
+    if (this.mesh) this.scene.remove(this.mesh)
   }
 }

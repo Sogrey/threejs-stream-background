@@ -150,11 +150,11 @@ export default class Particles {
   update(): void {
     if (!this.material) return;
     
-    this.material.uniforms.uTime.value = this.time.elapsedTime;
+    this.material!.uniforms.uTime.value = this.time.elapsedTime;
     
     // 动态景深焦点 - 让焦点随时间缓慢移动，范围更小
     const focusDistance = 8 + Math.sin(this.time.elapsedTime * 0.0001) * 2;
-    this.material.uniforms.uFocusPoint.value = focusDistance;
+    this.material!.uniforms.uFocusPoint.value = focusDistance;
   }
 
   /**
@@ -180,16 +180,16 @@ export default class Particles {
     if (!this.material) return;
 
     if (params.size !== undefined) {
-      this.material.uniforms.uSize.value = params.size;
+      this.material!.uniforms.uSize.value = params.size;
     }
     if (params.progressSpeed !== undefined) {
-      this.material.uniforms.uProgressSpeed.value = params.progressSpeed;
+      this.material!.uniforms.uProgressSpeed.value = params.progressSpeed;
     }
     if (params.perlinFrequency !== undefined) {
-      this.material.uniforms.uPerlinFrequency.value = params.perlinFrequency;
+      this.material!.uniforms.uPerlinFrequency.value = params.perlinFrequency;
     }
     if (params.perlinMultiplier !== undefined) {
-      this.material.uniforms.uPerlinMultiplier.value = params.perlinMultiplier;
+      this.material!.uniforms.uPerlinMultiplier.value = params.perlinMultiplier;
     }
   }
 
