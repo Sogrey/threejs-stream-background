@@ -15,7 +15,7 @@ export default class Smoke {
   
   private count: number = 40
   private group: THREE.Group
-  private geometry: THREE.PlaneGeometry
+  private geometry!: THREE.PlaneGeometry
   private items: Array<{
     floatingSpeed: number
     rotationSpeed: number

@@ -18,18 +18,18 @@ import SimpleParticles from './SimpleParticles'
 export default class Experience {
   private static instance: Experience | null = null
 
-  public scene: THREE.Scene
-  public time: Time
-  public sizes: Sizes
-  public resources: Resources
-  public camera: Camera
-  public renderer: Renderer
+  public scene!: THREE.Scene
+  public time!: Time
+  public sizes!: Sizes
+  public resources!: Resources
+  public camera!: Camera
+  public renderer!: Renderer
   public particles: Particles | null = null
   public gradient: Gradient | null = null
   public smoke: Smoke | null = null
 
-  private canvas: HTMLCanvasElement
-  private targetElement: HTMLElement
+  private canvas!: HTMLCanvasElement
+  private targetElement!: HTMLElement
   private animationId: number | null = null
 
   constructor(canvas: HTMLCanvasElement, targetElement?: HTMLElement) {

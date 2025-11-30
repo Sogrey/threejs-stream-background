@@ -63,7 +63,7 @@ export default class Resources extends EventEmitter {
         (progress: ProgressEvent) => {
           console.log(`Loading progress for ${item.name}:`, progress)
         },
-        (error: Error) => {
+        (error: unknown) => {
           console.error(`Failed to load ${item.name}:`, error)
           this.items[item.name] = null
           this.loaded.push(item)
@@ -83,7 +83,7 @@ export default class Resources extends EventEmitter {
    * 获取已加载的资源
    */
   getItem(name: string): THREE.Texture | null {
-    return this.items[name]
+    return this.items[name] ?? null
   }
 
   /**

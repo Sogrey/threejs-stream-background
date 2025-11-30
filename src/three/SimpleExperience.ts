@@ -9,13 +9,13 @@ import Renderer from './Renderer'
  * 用于测试基本场景是否正常工作
  */
 export default class SimpleExperience {
-  public scene: THREE.Scene
-  public time: Time
-  public sizes: Sizes
-  public camera: Camera
-  public renderer: Renderer
+  public scene!: THREE.Scene
+  public time!: Time
+  public sizes!: Sizes
+  public camera!: Camera
+  public renderer!: Renderer
 
-  private canvas: HTMLCanvasElement
+  private canvas!: HTMLCanvasElement
   private animationId: number | null = null
 
   constructor(canvas: HTMLCanvasElement) {

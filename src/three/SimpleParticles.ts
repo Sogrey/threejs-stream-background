@@ -6,11 +6,11 @@ import Time from '../utils/Time'
  * 使用基本的点云而不是着色器
  */
 export default class SimpleParticles {
-  private scene: THREE.Scene
-  private time: Time
-  private geometry: THREE.BufferGeometry
-  private material: THREE.PointsMaterial
-  private points: THREE.Points
+  private scene!: THREE.Scene
+  private time!: Time
+  private geometry!: THREE.BufferGeometry
+  private material!: THREE.PointsMaterial
+  private points!: THREE.Points
 
   constructor(scene: THREE.Scene, time: Time) {
     this.scene = scene

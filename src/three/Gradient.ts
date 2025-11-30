@@ -10,11 +10,11 @@ import gradientFragmentShader from '../shaders/gradientFragment.glsl?raw'
 export default class Gradient {
   private scene: THREE.Scene
   private time: Time
-  private geometry: THREE.PlaneGeometry
-  private material: THREE.ShaderMaterial
-  private mesh: THREE.Mesh
-
-  private colors: {
+  private geometry!: THREE.PlaneGeometry
+  private material!: THREE.ShaderMaterial
+  private mesh!: THREE.Mesh
+  
+  private colors!: {
     end: {
       value: string
       instance: THREE.Color
@@ -95,7 +95,7 @@ export default class Gradient {
     this.colors.start.value = `hsl(${this.time.elapsedTime * 0.01}, ${this.colors.start.saturation}%, ${this.colors.start.lightness}%)`
     this.colors.start.instance.set(this.colors.start.value)
 
-    this.material.uniforms.uTime.value = this.time.elapsedTime
+    this.material.uniforms.uTime.value = this.time.elapsedTime;
   }
 
   /**
