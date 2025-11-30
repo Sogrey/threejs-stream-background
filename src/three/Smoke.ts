@@ -81,6 +81,13 @@ export default class Smoke {
       rotationSpeed: number
       mesh: THREE.Mesh
       material: THREE.MeshBasicMaterial
+      // 新增缓动参数
+      moveSpeedX: number
+      moveSpeedY: number
+      moveSpeedZ: number
+      basePosition: THREE.Vector3
+      scaleSpeed: number
+      baseScale: THREE.Vector3
     }>
   } {
     const group = new THREE.Group()
