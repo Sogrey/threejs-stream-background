@@ -11,8 +11,8 @@ export default class Gradient {
   private scene: THREE.Scene
   private time: Time
   private geometry!: THREE.PlaneGeometry
-  private material!: THREE.ShaderMaterial
-  private mesh!: THREE.Mesh
+  private material: THREE.ShaderMaterial | null = null
+  private mesh: THREE.Mesh | null = null
   
   private colors!: {
     end: {
@@ -95,7 +95,9 @@ export default class Gradient {
     this.colors.start.value = `hsl(${this.time.elapsedTime * 0.01}, ${this.colors.start.saturation}%, ${this.colors.start.lightness}%)`
     this.colors.start.instance.set(this.colors.start.value)
 
-    this.material.uniforms.uTime.value = this.time.elapsedTime;
+    if (this.material) {
+      this.material.uniforms.uTime.value = this.time.elapsedTime;
+    }
   }
 
   /**

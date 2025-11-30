@@ -8,8 +8,6 @@ import Renderer from './Renderer'
 import Particles from './Particles'
 import Gradient from './Gradient'
 import Smoke from './Smoke'
-// 临时使用简化版本进行测试
-import SimpleParticles from './SimpleParticles'
 
 /**
  * Three.js体验类
@@ -43,13 +41,13 @@ export default class Experience {
 
     this.time = new Time()
     this.sizes = new Sizes()
-    
+
     this.setConfig()
     this.setScene()
     this.setCamera()
     this.setRenderer()
     this.setResources()
-    
+
     this.setupEventListeners()
     this.startRenderLoop()
   }
@@ -99,13 +97,13 @@ export default class Experience {
 
     console.log('Setting up resources...')
     this.resources = new Resources(assets)
-    
+
     // 等待资源加载完成
     this.resources.on('ready', () => {
       console.log('Resources ready, checking texture...')
       const texture = this.resources.getItem('particleMaskTexture')
       console.log('Texture loaded:', texture)
-      
+
       if (texture) {
         console.log('Setting gradient...')
         this.setGradient()
@@ -169,26 +167,26 @@ export default class Experience {
   private startRenderLoop(): void {
     const render = () => {
       this.time.update()
-      
+
       this.camera.update()
-      
+
       if (this.gradient) {
         this.gradient.update()
       }
-      
+
       if (this.smoke) {
         this.smoke.update()
       }
-      
+
       if (this.particles) {
         this.particles.update()
       }
-      
+
       this.renderer.instance.render(this.scene, this.camera.instance)
-      
+
       this.animationId = requestAnimationFrame(render)
     }
-    
+
     render()
   }
 
@@ -214,23 +212,23 @@ export default class Experience {
     if (this.animationId) {
       cancelAnimationFrame(this.animationId)
     }
-    
+
     if (this.gradient) {
       this.gradient.destroy()
     }
-    
+
     if (this.smoke) {
       this.smoke.destroy()
     }
-    
+
     if (this.particles) {
       this.particles.destroy()
     }
-    
+
     this.camera.destroy()
     this.renderer.destroy()
     this.sizes.destroy()
-    
+
     Experience.instance = null
   }
 }
